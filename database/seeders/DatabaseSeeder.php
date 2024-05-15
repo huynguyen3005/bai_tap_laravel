@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
+use App\Models\Customer;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\UserhasRole;
+use Database\Factories\UserhasRoleFactory;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        User::factory(30)->create();
+        Role::factory(3)->create();
+        Admin::factory(10)->create();
+        Customer::factory(10)->create();
+        UserhasRoleFactory::factoryForModel(UserhasRole::class)->count(10)->create();
     }
 }

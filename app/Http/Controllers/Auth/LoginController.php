@@ -33,6 +33,11 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
 
     public function register(Request $request){
         if($request->isMethod('POST')){

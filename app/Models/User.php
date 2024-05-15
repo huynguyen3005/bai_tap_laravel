@@ -41,4 +41,38 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_has_role', 'user_id', 'role_id');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
+
+    // Kiểm tra user có phải là admin không
+    public function isAdmin()
+    {
+        return $this->roles()->whereIn('name', ['Editer', 'Viewer'])->exists();
+    }
+
+    // Kiểm tra user có role admin_full_access không
+    public function isFullAccessAdmin()
+    {
+        return $this->roles()->where('name', 'Editer')->exists();
+    }
+
+    // Kiểm tra user có role admin_read_only không
+    public function isReadOnlyAdmin()
+    {
+        return $this->roles()->where('name', 'Viewer')->exists();
+    }
 }

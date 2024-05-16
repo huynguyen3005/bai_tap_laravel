@@ -61,7 +61,7 @@ class User extends Authenticatable
     // Kiểm tra user có phải là admin không
     public function isAdmin()
     {
-        return $this->roles()->whereIn('name', ['Editer', 'Viewer'])->exists();
+        return $this->roles()->whereIn('name', ['Editor', 'Viewer'])->exists();
     }
 
     // Kiểm tra user có role admin_full_access không

@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    //
-
     public function login(Request $request){
         if($request->isMethod('POST')){
             if(Auth::attempt($request->only(['email', 'password']))){

@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function() {
     return view('test.test_form');
 })->name('home');
+
+Route::get('/post/{id}',[PostController::class, 'edit'] )->name('post');
 
 Route::match(['GET', 'POST'],'/login', [LoginController::class, 'login'] )->name('login');
 Route::match(['GET', 'POST'],'/register', [LoginController::class, 'register'] )->name('register');
